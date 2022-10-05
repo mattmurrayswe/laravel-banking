@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BalanceController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\ResetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/balance', [BalanceController::class, 'balance']);
 
-Route::post('/event', function (Request $request) {
-    return 'Hello Event!';
-});
+Route::post('/event', [EventController::class, 'event']);
 
-Route::get('/reset', function (Request $request) {
-    return 'Hello Reset!';
-});
+Route::get('/reset', [ResetController::class, 'reset']);
