@@ -15,5 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/balance', function (Request $request) {
-    return 'Hello!';
+    return 'Hello Balance!';
+});
+
+Route::get('/reset', function (Request $request) {
+    return 'Hello Reset!';
+});
+
+Route::get('/event', function (Request $request) {
+    return 'Hello Event!';
 });
