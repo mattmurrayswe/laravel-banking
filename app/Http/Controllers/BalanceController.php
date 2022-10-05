@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\UseCases\Balance\Adapters\InputAdapter;
+use App\UseCases\Balance\Adapters\OutputAdapter;
+use App\UseCases\Balance\Interactors\Interactor;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
@@ -12,6 +14,10 @@ class BalanceController extends BaseController
     {
         $inputAdapter = new InputAdapter($request);
 
-        return "Hello account_id: {$inputAdapter->inputContract->accountId}";
+        $interactor = new Interactor($inputAdapter->inputContract);
+
+        $outputAdapter = new OutputAdapter($interactor->interactorContract);
+
+        return $outputAdapter->response;
     }
 }
