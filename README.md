@@ -1,7 +1,8 @@
-Important commands:
+Used commands:
 
     php artisan serve
-
+    php artisan route:cache
+    php artisan route:list
 
 Stack:
 
