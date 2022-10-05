@@ -18,10 +18,10 @@ Route::get('/balance', function (Request $request) {
     return 'Hello Balance!';
 });
 
-Route::get('/reset', function (Request $request) {
-    return 'Hello Reset!';
+Route::post('/event', function (Request $request) {
+    return 'Hello Event!';
 });
 
-Route::get('/event', function (Request $request) {
-    return 'Hello Event!';
+Route::get('/reset', function (Request $request) {
+    return 'Hello Reset!';
 });
