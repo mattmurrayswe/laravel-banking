@@ -2,16 +2,16 @@
 
 namespace App\UseCases\Balance\Adapters;
 
-use App\UseCases\Balance\Contracts\BalanceContract;
+use App\UseCases\Balance\Contracts\InputContract;
 use Illuminate\Http\Request;
 
-class BalanceAdapter
+class InputAdapter
 {
-    public BalanceContract $balanceContract;
+    public InputContract $inputContract;
 
     public function __construct(Request $request)
     {
-        $this->balanceContract = new BalanceContract(
+        $this->inputContract = new InputContract(
             $request->get('account_id')
         );
     }

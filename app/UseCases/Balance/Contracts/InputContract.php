@@ -2,7 +2,7 @@
 
 namespace App\UseCases\Balance\Contracts;
 
-class BalanceContract
+class InputContract
 {
     public int $accountId;
 
