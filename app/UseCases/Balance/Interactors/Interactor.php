@@ -3,6 +3,7 @@
 namespace App\UseCases\Balance\Interactors;
 
 use App\UseCases\Balance\BusinessEntities\AccountExistanceVerifier;
+use App\UseCases\Balance\BusinessEntities\BalanceChecker;
 use App\UseCases\Balance\Contracts\InputContract;
 use App\UseCases\Balance\Contracts\InteractorContract;
 
@@ -17,7 +18,11 @@ class Interactor
         );
 
         $this->interactorContract = new InteractorContract(
+            $inputContract->accountId,
             $accountExistanceVerifier->exists
         );
+
+        $balanceChecker = new BalanceChecker($inputContract->accountId);
+        $this->interactorContract->balance = $balanceChecker->balance;
     }
 }
