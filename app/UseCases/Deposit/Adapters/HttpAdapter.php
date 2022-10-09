@@ -25,7 +25,7 @@ class HttpAdapter
         $this->response = response(
             [
                 'destination' => [
-                    'id' => $interactorContract->accountId,
+                    'id' => "{$interactorContract->accountId}",
                     'balance' => $interactorContract->balance
                 ]
             ],
