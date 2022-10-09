@@ -8,3 +8,8 @@ Stack:
 
     composer@1.10.1
     php@7.4.3
+
+Ngrok
+
+    cd into app root directory
+    ngrok http 8000
