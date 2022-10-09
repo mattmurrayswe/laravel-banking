@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\UseCases\DecideEvent\Adapters\Adapter;
-use App\UseCases\DecideEvent\Adapters\OutputAdapter;
 use App\UseCases\Deposit\Adapters\HttpAdapter as AdapterDeposit;
 use App\UseCases\Deposit\Interactors\Interactor as InteractorDeposit;
 use Illuminate\Http\Request;
@@ -20,9 +19,13 @@ class EventController extends BaseController
             
             $adapterDeposit = new AdapterDeposit($request);
 
-            $interactorDeposit = new InteractorDeposit($adapterDeposit->inputContract);
+            $interactorDeposit = new InteractorDeposit(
+                $adapterDeposit->inputContract
+            );
 
-            $adapterDeposit->setResponse($interactorDeposit->interactorContract);
+            $adapterDeposit->setResponse(
+                $interactorDeposit->interactorContract
+            );
 
             return $adapterDeposit->response;
         }
