@@ -8,6 +8,6 @@ class ResetController extends BaseController
 {
     public function reset()
     {
-        return 'Hello Reset Controller!';
+        return response('OK', 200);
     }
 }
