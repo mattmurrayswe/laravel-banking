@@ -5,7 +5,7 @@ namespace App\UseCases\DecideEvent\Adapters;
 use App\UseCases\DecideEvent\Contracts\InputContract;
 use Illuminate\Http\Request;
 
-class Adapter
+class HttpAdapter
 {
     public InputContract $inputContract;
 

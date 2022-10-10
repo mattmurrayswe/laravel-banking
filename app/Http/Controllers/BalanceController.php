@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\UseCases\Balance\Adapters\HttpAdapter as Adapter;
 use App\UseCases\Balance\Adapters\InputAdapter;
 use App\UseCases\Balance\Adapters\OutputAdapter;
 use App\UseCases\Balance\Interactors\Interactor;
@@ -13,12 +14,12 @@ class BalanceController extends BaseController
 {
     public function balance(Request $request): Response
     {
-        $inputAdapter = new InputAdapter($request);
+        $adapter = new Adapter($request);
 
-        $interactor = new Interactor($inputAdapter->inputContract);
+        $interactor = new Interactor($adapter->inputContract);
 
-        $outputAdapter = new OutputAdapter($interactor->interactorContract);
+        $adapter->setResponse($interactor->interactorContract);
 
-        return $outputAdapter->response;
+        return $adapter->response;
     }
 }

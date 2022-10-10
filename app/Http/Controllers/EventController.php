@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\UseCases\DecideEvent\Adapters\Adapter as AdapterEvent;
+use App\UseCases\DecideEvent\Adapters\HttpAdapter as AdapterEvent;
 use App\UseCases\Deposit\Adapters\HttpAdapter as AdapterDeposit;
 use App\UseCases\Deposit\Interactors\Interactor as InteractorDeposit;
 use App\UseCases\Withdraw\Adapters\HttpAdapter as AdapterWithdraw;
