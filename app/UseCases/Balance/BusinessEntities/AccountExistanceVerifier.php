@@ -4,13 +4,14 @@ namespace App\UseCases\Balance\BusinessEntities;
 
 class AccountExistanceVerifier
 {
-    public bool $exists = true;
+    public bool $exists = false;
 
     public function __construct(int $accountId)
     {
-        if ($accountId === 1234)
-        {
-            $this->exists = false;
+        if (file_get_contents("{$accountId}.txt") !== 'NULL') {
+
+            $this->exists = true;
+
         }
     }
 }

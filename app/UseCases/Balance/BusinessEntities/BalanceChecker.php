@@ -8,9 +8,10 @@ class BalanceChecker
 
     public function __construct(int $accountId)
     {
-        if ($accountId === 100)
-        {
-            $this->balance = 10;
+        if (file_get_contents("{$accountId}.txt") !== 'NULL') {    
+
+            $this->balance = (int) file_get_contents("{$accountId}.txt");
+
         }
     }
 }

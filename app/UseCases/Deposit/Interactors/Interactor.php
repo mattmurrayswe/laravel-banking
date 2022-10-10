@@ -2,9 +2,9 @@
 
 namespace App\UseCases\Deposit\Interactors;
 
-use App\UseCases\Balance\Contracts\InputContract as BalanceInputContract;
-use App\UseCases\Balance\Interactors\Interactor as BalanceInteractor;
-use App\UseCases\Deposit\BusinessEntities\AccountExistanceVerifier;
+use App\UseCases\Balance\BusinessEntities\AccountExistanceVerifier;
+use App\UseCases\CreateAccount\BusinessEntities\AccountCreator;
+use App\UseCases\Deposit\BusinessEntities\BalanceIncreaser;
 use App\UseCases\Deposit\Contracts\InputContract;
 use App\UseCases\Deposit\Contracts\InteractorContract;
 
@@ -14,15 +14,41 @@ class Interactor
 
     public function __construct(InputContract $inputContract)
     {
-        $balanceInputContract = new BalanceInputContract($inputContract->destination);
+        $accountExistanceVerifier = new AccountExistanceVerifier(
+            $inputContract->destination
+        );
+        
+        if ($accountExistanceVerifier->exists === true) {
 
-        $balanceInteractor = new BalanceInteractor($balanceInputContract);
+            $balanceIncreaser = new BalanceIncreaser(
+                $inputContract->destination, 
+                $inputContract->amount
+            );
 
-        if ($balanceInteractor->interactorContract->accountExists === true) {
-            $this->interactorContract = new InteractorContract(
+            $this->setInteractorContract(
                 $inputContract->destination,
-                $balanceInteractor->interactorContract->balance
+                $balanceIncreaser->newBalance
+            );
+
+        } else {
+
+            new AccountCreator(
+                $inputContract->destination, 
+                $inputContract->amount
+            );
+
+            $this->setInteractorContract(
+                $inputContract->destination,
+                $inputContract->amount
             );
         }
+    }
+
+    private function setInteractorContract(int $accountId, int $balance): void
+    {
+        $this->interactorContract = new InteractorContract(
+            $accountId,
+            $balance
+        );
     }
 }

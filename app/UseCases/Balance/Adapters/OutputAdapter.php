@@ -14,7 +14,7 @@ class OutputAdapter
         if ($interactorContract->accountExists === true)
         {
             $this->response = response(
-                20,
+                $interactorContract->balance,
                 200
             );
         }
