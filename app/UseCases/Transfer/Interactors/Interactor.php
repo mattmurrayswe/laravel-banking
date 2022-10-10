@@ -54,6 +54,7 @@ class Interactor
                 $inputContract->destination,
                 NULL,
             );
+            
         }
     }
 
@@ -67,11 +68,13 @@ class Interactor
         int $accountIdDestination,
         $balanceDestination
     ): void {
+
         $this->interactorContract = new InteractorContract(
             $accountIdOrigin,
             $balanceOrigin,
             $accountIdDestination,
             $balanceDestination
         );
+
     }
 }
