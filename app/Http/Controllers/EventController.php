@@ -7,6 +7,8 @@ use App\UseCases\Deposit\Adapters\HttpAdapter as AdapterDeposit;
 use App\UseCases\Deposit\Interactors\Interactor as InteractorDeposit;
 use App\UseCases\Withdraw\Adapters\HttpAdapter as AdapterWithdraw;
 use App\UseCases\Withdraw\Interactors\Interactor as InteractorWithdraw;
+use App\UseCases\Transfer\Adapters\HttpAdapter as AdapterTransfer;
+use App\UseCases\Transfer\Interactors\Interactor as InteractorTransfer;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
@@ -66,16 +68,16 @@ class EventController extends BaseController
 
     public function transfer(Request $request): Response
     {
-        $adapterDeposit = new AdapterDeposit($request);
+        $adapterTransfer = new AdapterTransfer($request);
 
-        $interactorDeposit = new InteractorDeposit(
-            $adapterDeposit->inputContract
+        $interactorTransfer = new InteractorTransfer(
+            $adapterTransfer->inputContract
         );
 
-        $adapterDeposit->setResponse(
-            $interactorDeposit->interactorContract
+        $adapterTransfer->setResponse(
+            $interactorTransfer->interactorContract
         );
 
-        return $adapterDeposit->response;
+        return $adapterTransfer->response;
     }
 }

@@ -14,6 +14,8 @@ class ResetController extends BaseController
 
         file_put_contents('200.txt', 'NULL');
 
+        file_put_contents('300.txt', 'NULL');
+
         return response('OK', 200);
     }
 }
